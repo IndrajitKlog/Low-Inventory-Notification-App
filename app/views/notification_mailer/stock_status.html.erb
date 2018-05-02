@@ -1,0 +1,9 @@
+<p>Hello <%= "#{@admin_email}" %> </p>
+
+<% @products.each do |product| %>
+	<% if product.variants[0].attributes[:"inventory_quantity"] <= 5 %>
+    	<%= link_to product.title, "https://#{@domain}/admin/products/#{product.id}", target: "_top" %> - Stock : <%= product.variants[0].attributes[:"inventory_quantity"] %> </br>
+    <% end %></br>
+<% end %>
+
+<p>Please update stock , thank you</p>

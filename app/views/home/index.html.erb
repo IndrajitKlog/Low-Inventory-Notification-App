@@ -5,13 +5,12 @@
     });
   </script>
 <% end %>
+
+<h2> Admin Email -
+  <%= @admin_email %></h2>
 <h2>Products</h2>
 
-<ul>
-  <% @products.each do |product| %>
-    <li><%= link_to product.title, "https://#{@shop_session.url}/admin/products/#{product.id}", target: "_top" %></li>
-  <% end %>
-</ul>
+
 
 <hr>
 
@@ -25,4 +24,13 @@
   </ul>
 <% else %>
   <p>This app has not created any webhooks for this Shop. Add webhooks to your ShopifyApp initializer if you need webhooks</p>
+<% end %>
+
+
+<h3>---------------------------------------------------------------------------------------------------</h3>
+<h2>Listing all product stock </h2>
+<% @products.each_with_index do |product, index| %>
+ <% if product.variants[0].attributes[:"inventory_quantity"] <= 5 %>
+    <%= index %> - Product Name : <%= product.title %>  Stock : <%= product.variants[0].attributes[:"inventory_quantity"] %> </br>
+  <% end %>
 <% end %>

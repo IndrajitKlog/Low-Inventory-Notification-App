@@ -1,3 +1,5 @@
+OmniAuth.config.logger = Rails.logger
+
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :shopify,
            ShopifyApp.configuration.api_key,
@@ -16,3 +18,4 @@ Rails.application.config.middleware.use OmniAuth::Builder do
              strategy.options[:client_options][:site] = shop
            }
 end
+
